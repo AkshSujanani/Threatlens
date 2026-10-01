@@ -1,0 +1,66 @@
+/* ============================ Bottom CTA ============================ */
+
+.tl-cta__panel {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 44px;
+  text-align: center;
+  border: 1px solid var(--tl-border-strong);
+  border-radius: var(--tl-radius-xl);
+  background:
+    linear-gradient(180deg, rgba(22, 32, 47, 0.8) 0%, rgba(8, 13, 22, 0.92) 100%);
+  box-shadow: var(--tl-shadow-lg);
+}
+
+/* thin accent hairline along the top edge */
+.tl-cta__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--tl-accent), transparent);
+}
+
+.tl-cta__glow {
+  position: absolute;
+  left: 50%;
+  bottom: -62%;
+  width: 760px;
+  height: 460px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 66%);
+  pointer-events: none;
+}
+
+.tl-cta__title {
+  position: relative;
+  margin-top: 18px;
+  font-size: clamp(1.75rem, 1.15rem + 2.3vw, 2.6rem);
+}
+
+.tl-cta__lead {
+  position: relative;
+  max-width: 48ch;
+  margin: 16px auto 0;
+  color: var(--tl-text-muted);
+}
+
+.tl-cta__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+@media (max-width: 560px) {
+  .tl-cta__panel {
+    padding: 38px 20px;
+  }
+
+  .tl-cta__actions .tl-btn {
+    width: 100%;
+  }
+}

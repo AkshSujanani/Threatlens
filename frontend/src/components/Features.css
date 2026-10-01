@@ -1,0 +1,178 @@
+/* ============================ Features ============================ */
+
+.tl-features {
+  border-bottom: 1px solid var(--tl-border);
+}
+
+.tl-features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 52px;
+}
+
+.tl-feature {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 600ms var(--tl-ease),
+    transform 600ms var(--tl-ease);
+  transition-delay: var(--tl-reveal-delay, 0ms);
+}
+
+.tl-features__grid.is-visible .tl-feature {
+  opacity: 1;
+  transform: none;
+}
+
+/* 7 cards in a 3-column grid: the last one closes the row full-width. */
+.tl-feature:last-child {
+  grid-column: 1 / -1;
+}
+
+.tl-feature__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  height: 100%;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid var(--tl-border);
+  border-radius: var(--tl-radius-lg);
+  background: linear-gradient(180deg, rgba(22, 32, 47, 0.62), rgba(10, 15, 26, 0.72));
+  box-shadow: var(--tl-shadow);
+  transition:
+    border-color var(--tl-dur) var(--tl-ease),
+    box-shadow var(--tl-dur) var(--tl-ease),
+    transform var(--tl-dur) var(--tl-ease);
+}
+
+/* Hover sheen — a soft accent wash rather than a neon glow. */
+.tl-feature__card::before {
+  content: '';
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 120px;
+  opacity: 0;
+  background: radial-gradient(120px 70px at 24% 0%, rgba(56, 189, 248, 0.22), transparent 70%);
+  transition: opacity var(--tl-dur) var(--tl-ease);
+  pointer-events: none;
+}
+
+.tl-feature__card:hover {
+  border-color: var(--tl-border-accent);
+  box-shadow: var(--tl-shadow-lg), var(--tl-glow-soft);
+  transform: translateY(-5px);
+}
+
+.tl-feature__card:hover::before {
+  opacity: 1;
+}
+
+.tl-feature__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--tl-border-accent);
+  border-radius: var(--tl-radius);
+  background: var(--tl-accent-soft);
+  color: var(--tl-accent);
+  transition: box-shadow var(--tl-dur) var(--tl-ease);
+}
+
+.tl-feature__card:hover .tl-feature__icon {
+  box-shadow: var(--tl-glow-soft);
+}
+
+.tl-feature__title {
+  font-size: 1.0625rem;
+  font-weight: 620;
+}
+
+.tl-feature__desc {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--tl-text-muted);
+}
+
+.tl-feature__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tl-feature__tag {
+  padding: 4px 9px;
+  border: 1px solid var(--tl-border);
+  border-radius: 999px;
+  background: rgba(17, 26, 40, 0.8);
+  font-family: var(--tl-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--tl-text-dim);
+}
+
+/* The full-width closing card lays its parts out horizontally so it does not
+   read as a half-empty column. */
+@media (min-width: 681px) {
+  .tl-feature:last-child .tl-feature__card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 22px;
+    row-gap: 5px;
+  }
+
+  .tl-feature:last-child .tl-feature__icon {
+    grid-row: 1 / span 2;
+  }
+
+  .tl-feature:last-child .tl-feature__title {
+    grid-column: 2;
+    align-self: end;
+  }
+
+  .tl-feature:last-child .tl-feature__desc {
+    grid-column: 2;
+    align-self: start;
+  }
+
+  .tl-feature:last-child .tl-feature__tags {
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    margin-top: 0;
+    justify-content: flex-end;
+  }
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 1000px) {
+  .tl-features__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tl-feature:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .tl-features__grid {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 40px;
+  }
+
+  .tl-feature:last-child {
+    grid-column: auto;
+  }
+
+  .tl-feature__card {
+    padding: 20px;
+  }
+}

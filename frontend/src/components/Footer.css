@@ -1,0 +1,163 @@
+/* ============================ Footer ============================ */
+
+.tl-footer {
+  border-top: 1px solid var(--tl-border);
+  background: rgba(5, 8, 14, 0.7);
+}
+
+.tl-footer__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr);
+  gap: 48px;
+  padding-block: 56px;
+}
+
+/* ---------- Brand column ---------- */
+
+.tl-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.tl-footer__mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--tl-border-accent);
+  border-radius: 9px;
+  background: var(--tl-accent-soft);
+  color: var(--tl-accent);
+}
+
+.tl-footer__name {
+  font-size: 1.0625rem;
+  font-weight: 660;
+  letter-spacing: -0.02em;
+}
+
+.tl-footer__blurb {
+  max-width: 38ch;
+  margin-top: 16px;
+  font-size: 0.875rem;
+  color: var(--tl-text-dim);
+}
+
+.tl-footer__version {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 10px;
+  border: 1px solid var(--tl-border);
+  border-radius: 999px;
+  font-family: var(--tl-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tl-text-dim);
+}
+
+/* ---------- Link columns ---------- */
+
+.tl-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.tl-footer__col-title {
+  font-family: var(--tl-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tl-text-dim);
+}
+
+.tl-footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 14px;
+}
+
+.tl-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 8px;
+  margin-left: -8px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--tl-text-muted);
+  transition:
+    color var(--tl-dur) var(--tl-ease),
+    background-color var(--tl-dur) var(--tl-ease);
+}
+
+a.tl-footer__link:hover {
+  color: var(--tl-accent);
+  background: rgba(56, 189, 248, 0.07);
+}
+
+.tl-footer__link.is-pending {
+  color: var(--tl-text-dim);
+  cursor: default;
+}
+
+.tl-footer__pending-tag {
+  padding: 1px 6px;
+  border: 1px solid var(--tl-border);
+  border-radius: 999px;
+  font-family: var(--tl-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- Bottom bar ---------- */
+
+.tl-footer__bar {
+  border-top: 1px solid var(--tl-border);
+}
+
+.tl-footer__bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-block: 20px;
+}
+
+.tl-footer__legal {
+  font-size: 0.84rem;
+  color: var(--tl-text-muted);
+}
+
+.tl-footer__scope {
+  font-family: var(--tl-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tl-text-dim);
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 860px) {
+  .tl-footer__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    padding-block: 44px;
+  }
+}
+
+@media (max-width: 520px) {
+  .tl-footer__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}

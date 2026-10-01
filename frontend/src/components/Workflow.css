@@ -1,0 +1,208 @@
+/* ============================ How it works ============================ */
+
+.tl-workflow {
+  position: relative;
+  border-bottom: 1px solid var(--tl-border);
+  background:
+    radial-gradient(760px 420px at 50% 0%, rgba(99, 102, 241, 0.07), transparent 70%);
+}
+
+.tl-workflow__pipe {
+  margin-top: 54px;
+}
+
+.tl-workflow__list {
+  display: flex;
+  flex-direction: column;
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.tl-workflow__stage {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 560ms var(--tl-ease),
+    transform 560ms var(--tl-ease);
+  transition-delay: var(--tl-reveal-delay, 0ms);
+}
+
+.tl-workflow__pipe.is-visible .tl-workflow__stage {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Connector rail ---------- */
+
+.tl-workflow__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tl-workflow__dot {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--tl-border-strong);
+  border-radius: 12px;
+  background: var(--tl-surface-2);
+  color: var(--tl-text-dim);
+  transition:
+    border-color 420ms var(--tl-ease),
+    color 420ms var(--tl-ease),
+    box-shadow 420ms var(--tl-ease);
+  transition-delay: var(--tl-reveal-delay, 0ms);
+}
+
+.tl-workflow__pipe.is-visible .tl-workflow__dot {
+  border-color: var(--tl-border-accent);
+  color: var(--tl-accent);
+  box-shadow: var(--tl-glow-soft);
+}
+
+.tl-workflow__stage--source .tl-workflow__dot {
+  border-radius: 999px;
+}
+
+.tl-workflow__pipe.is-visible
+  .tl-workflow__stage--output
+  .tl-workflow__dot {
+  color: var(--tl-ok);
+  border-color: rgba(52, 211, 153, 0.36);
+  box-shadow: 0 0 22px -10px rgba(52, 211, 153, 0.7);
+}
+
+/* Vertical connector — fill grows when the section enters the viewport. */
+.tl-workflow__line {
+  position: relative;
+  flex: 1;
+  width: 2px;
+  min-height: 34px;
+  margin: 6px 0;
+  border-radius: 999px;
+  background: var(--tl-border);
+  overflow: hidden;
+}
+
+.tl-workflow__line-fill {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--tl-accent), rgba(56, 189, 248, 0.35));
+}
+
+.tl-workflow__pipe.is-visible .tl-workflow__line-fill {
+  animation: tl-line-grow 520ms var(--tl-ease) both;
+  animation-delay: calc(var(--tl-reveal-delay, 0ms) + 200ms);
+}
+
+@keyframes tl-line-grow {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+.tl-workflow__pulse {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tl-accent);
+  box-shadow: 0 0 9px 1px var(--tl-accent);
+  opacity: 0;
+}
+
+.tl-workflow__pipe.is-visible .tl-workflow__pulse {
+  animation: tl-pulse-travel 2.8s linear infinite;
+  animation-delay: calc(var(--tl-reveal-delay, 0ms) + 700ms);
+}
+
+@keyframes tl-pulse-travel {
+  0% { top: 0; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ---------- Stage card ---------- */
+
+.tl-workflow__card {
+  margin-bottom: 14px;
+  padding: 17px 20px;
+  border: 1px solid var(--tl-border);
+  border-radius: var(--tl-radius-lg);
+  background: linear-gradient(180deg, rgba(22, 32, 47, 0.58), rgba(10, 15, 26, 0.62));
+  transition:
+    border-color var(--tl-dur) var(--tl-ease),
+    background-color var(--tl-dur) var(--tl-ease),
+    transform var(--tl-dur) var(--tl-ease);
+}
+
+.tl-workflow__stage:hover .tl-workflow__card {
+  border-color: var(--tl-border-accent);
+  transform: translateX(4px);
+}
+
+.tl-workflow__card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tl-workflow__step {
+  font-family: var(--tl-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tl-accent);
+}
+
+.tl-workflow__note {
+  padding: 2px 8px;
+  border: 1px solid var(--tl-border);
+  border-radius: 999px;
+  font-family: var(--tl-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--tl-text-dim);
+}
+
+.tl-workflow__label {
+  margin-top: 7px;
+  font-size: 1.0625rem;
+  font-weight: 620;
+}
+
+.tl-workflow__detail {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--tl-text-muted);
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 620px) {
+  .tl-workflow__stage {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .tl-workflow__dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+
+  .tl-workflow__card {
+    padding: 15px 16px;
+  }
+}

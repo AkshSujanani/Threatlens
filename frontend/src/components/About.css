@@ -1,0 +1,231 @@
+/* ============================ About ============================ */
+
+.tl-about {
+  border-bottom: 1px solid var(--tl-border);
+}
+
+.tl-about__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.tl-about__prose {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: var(--tl-text-muted);
+  font-size: 1rem;
+}
+
+.tl-about__caveat {
+  display: flex;
+  gap: 11px;
+  margin-top: 4px;
+  padding: 15px 17px;
+  border: 1px solid var(--tl-border);
+  border-left: 2px solid var(--tl-accent);
+  border-radius: var(--tl-radius);
+  background: rgba(13, 20, 32, 0.6);
+  font-size: 0.9375rem;
+  color: var(--tl-text-muted);
+}
+
+.tl-about__caveat svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--tl-accent);
+}
+
+/* ---------- Principles ---------- */
+
+.tl-about__principles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tl-about__principle {
+  display: flex;
+  gap: 13px;
+  padding: 17px;
+  border: 1px solid var(--tl-border);
+  border-radius: var(--tl-radius-lg);
+  background: linear-gradient(180deg, rgba(22, 32, 47, 0.52), rgba(10, 15, 26, 0.52));
+  transition:
+    border-color var(--tl-dur) var(--tl-ease),
+    transform var(--tl-dur) var(--tl-ease);
+}
+
+.tl-about__principle:hover {
+  border-color: var(--tl-border-accent);
+  transform: translateX(3px);
+}
+
+.tl-about__principle-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--tl-border);
+  border-radius: 10px;
+  background: var(--tl-surface-2);
+  color: var(--tl-accent);
+}
+
+.tl-about__principle-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.tl-about__principle-body {
+  margin-top: 5px;
+  font-size: 0.875rem;
+  color: var(--tl-text-dim);
+}
+
+/* ---------- Core workflow strip ---------- */
+
+.tl-about__flow-wrap {
+  margin-top: 72px;
+  padding-top: 44px;
+  border-top: 1px solid var(--tl-border);
+}
+
+.tl-about__flow-title {
+  font-size: 1.3rem;
+}
+
+.tl-about__flow-lead {
+  margin-top: 8px;
+  color: var(--tl-text-dim);
+  font-size: 0.9375rem;
+}
+
+.tl-about__flow {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.tl-about__flow-step {
+  position: relative;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 560ms var(--tl-ease),
+    transform 560ms var(--tl-ease);
+  transition-delay: var(--tl-reveal-delay, 0ms);
+}
+
+.tl-about__flow.is-visible .tl-about__flow-step {
+  opacity: 1;
+  transform: none;
+}
+
+.tl-about__flow-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: 100%;
+  padding: 17px 15px;
+  border: 1px solid var(--tl-border);
+  border-radius: var(--tl-radius-lg);
+  background: linear-gradient(180deg, rgba(22, 32, 47, 0.68), rgba(10, 15, 26, 0.68));
+  transition:
+    border-color var(--tl-dur) var(--tl-ease),
+    box-shadow var(--tl-dur) var(--tl-ease),
+    transform var(--tl-dur) var(--tl-ease);
+}
+
+.tl-about__flow-step:hover .tl-about__flow-card {
+  border-color: var(--tl-border-accent);
+  box-shadow: var(--tl-glow-soft);
+  transform: translateY(-4px);
+}
+
+.tl-about__flow-index {
+  font-family: var(--tl-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--tl-text-dim);
+}
+
+.tl-about__flow-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--tl-border-accent);
+  border-radius: 10px;
+  background: var(--tl-accent-soft);
+  color: var(--tl-accent);
+}
+
+.tl-about__flow-label {
+  margin-top: 2px;
+  font-size: 0.9375rem;
+  font-weight: 620;
+}
+
+.tl-about__flow-desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--tl-text-dim);
+}
+
+.tl-about__flow-arrow {
+  position: absolute;
+  top: 34px;
+  right: -13px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: var(--tl-border-strong);
+}
+
+.tl-about__flow.is-visible .tl-about__flow-arrow {
+  color: var(--tl-accent);
+  animation: tl-arrow-in 500ms var(--tl-ease) both;
+  animation-delay: calc(var(--tl-reveal-delay, 0ms) + 220ms);
+}
+
+@keyframes tl-arrow-in {
+  from { opacity: 0; transform: translateX(-6px); }
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 1040px) {
+  .tl-about__flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .tl-about__flow-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .tl-about__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 620px) {
+  .tl-about__flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tl-about__flow-wrap {
+    margin-top: 52px;
+  }
+}
